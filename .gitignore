@@ -1,0 +1,30 @@
+# Compiled Python files
+*.pyc
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+
+# Environment variables file
+.env
+
+# Dependency directories
+venv/
+env/
+
+# Build artifacts
+build/
+dist/
+
+# Editor-specific files
+.vscode/
+.idea/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Virtual Enviirement
+/System Eternals
