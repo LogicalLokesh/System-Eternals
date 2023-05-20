@@ -1,35 +1,18 @@
 '''
 Part of the System Eternals Suite.
 
-This script tries to removes files from a specified directory based on certain criteria 
+This script tries to remove files from a specified directory based on certain criteria 
 such as filename, extension, or starting name.
 
-Copyright (c) LogicalLokesh. All rights reserved.
 Author: LogicalLokesh
-Date: 2023-05-19
 '''
-
 
 import argparse
 import os
+from colorama import init, Fore, Style
 
 
 def remove_files(target_dir, filename=None, extension=None, start_name=None):
-    """
-    This function removes files from a specified directory based on certain criteria such as filename,
-    extension, or starting name.
-
-    :param target_dir: The directory where the function will search for files to delete
-    :param filename: The name of the file to be deleted. If specified, only files with this exact name
-    will be deleted
-    :param extension: The file extension to match when searching for files to delete. For example, if
-    extension=".txt", the function will search for all files with a ".txt" extension in the target
-    directory and its subdirectories
-    :param start_name: A string that specifies the starting characters of the file name. If a file's
-    name starts with the specified string, it will be added to the list of files to be deleted
-    :return: The function does not explicitly return anything, but it may return `None` implicitly if
-    the `confirm` variable is not equal to "y".
-    """
     if target_dir is None:
         target_dir = os.getcwd()
 
@@ -47,17 +30,20 @@ def remove_files(target_dir, filename=None, extension=None, start_name=None):
                 files_to_delete.append(file_path)
 
     num_files = len(files_to_delete)
-    print(f"Found {num_files} file(s) to delete.")
+    print(Fore.YELLOW +
+          f"Found {num_files} file(s) to delete." + Style.RESET_ALL)
 
     if num_files > 0:
-        print("Files to delete:")
+        print(Fore.RED + "Files to delete:")
         for file in files_to_delete:
             print(file)
+        print(Style.RESET_ALL)
 
         # ask the user if they want to delete the files
-        confirm = input("Do you want to continue? (y/n): ").lower()
+        confirm = input(
+            Fore.YELLOW + "Do you want to continue? (y/n): " + Style.RESET_ALL).lower()
         if confirm != "y":
-            print("Aborted. No files were deleted.")
+            print(Fore.GREEN + "Aborted. No files were deleted." + Style.RESET_ALL)
             return
 
         files_deleted = 0
@@ -65,14 +51,18 @@ def remove_files(target_dir, filename=None, extension=None, start_name=None):
         for file_path in files_to_delete:
             try:
                 os.remove(file_path)
-                print(f"Deleted file: {file_path}")
+                print(Fore.GREEN +
+                      f"Deleted file: {file_path}" + Style.RESET_ALL)
                 files_deleted += 1
             except Exception as e:
-                print(f"Error deleting file: {file_path} - {e}")
+                print(
+                    Fore.RED + f"Error deleting file: {file_path} - {e}" + Style.RESET_ALL)
 
-        print(f"Total files deleted: {files_deleted}")
+        print(Fore.YELLOW +
+              f"Total files deleted: {files_deleted}" + Style.RESET_ALL)
     else:
-        print("No files found matching the specified criteria.")
+        print(
+            Fore.GREEN + "No files found matching the specified criteria." + Style.RESET_ALL)
 
 
 def main():
@@ -94,4 +84,5 @@ def main():
 
 
 if __name__ == "__main__":
+    init()  # Initialize colorama
     main()
