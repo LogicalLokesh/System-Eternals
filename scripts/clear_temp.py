@@ -14,12 +14,9 @@ import tempfile
 import platform
 from colorama import init, Fore, Style
 
-# Initialize colorama
-init()
-
 
 def get_folder_size(folder_path):
-    # Calculate the total size of a folder and its subfolders
+    # Calculate the total size of a folder and its sub folders
     total_size = 0
     for dirpath, dirnames, filenames in os.walk(folder_path):
         for filename in filenames:
@@ -28,7 +25,11 @@ def get_folder_size(folder_path):
     return total_size
 
 
-def remove_temp_contents():
+def main():
+
+    # Initialize colorama
+    init()
+
     # Check if the script is running on Windows
     if platform.system() != 'Windows':
         print(
@@ -104,6 +105,6 @@ def remove_temp_contents():
           f"Space freed: {space_freed / (1024 * 1024):.2f} MB" + Style.RESET_ALL)
 
 
+
 if __name__ == "__main__":
-    # Call the function to remove the contents of the Windows temporary directory
-    remove_temp_contents()
+    main()

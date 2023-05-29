@@ -66,6 +66,9 @@ def remove_files(target_dir, filename=None, extension=None, start_name=None):
 
 
 def main():
+
+    init()  # Initialize colorama
+    
     # Create the argument parser
     parser = argparse.ArgumentParser(
         description='Delete files based on criteria')
@@ -84,5 +87,4 @@ def main():
 
 
 if __name__ == "__main__":
-    init()  # Initialize colorama
     main()

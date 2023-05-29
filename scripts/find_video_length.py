@@ -15,10 +15,6 @@ from colorama import init, Fore, Style
 from moviepy.editor import VideoFileClip
 
 
-# Initialize colorama
-init()
-
-
 def get_video_duration(filepath):
     '''
     Retrieves the duration of a video file using moviepy.
@@ -142,10 +138,14 @@ def get_total_runtime(directory, display_files=False):
     return seconds, minutes % 60, hours % 24, days, total_videos
 
 
-if __name__ == '__main__':
+def main():
+
+    # Initialize colorama
+    init()
+
     if len(sys.argv) < 2:
         print(
-            Fore.RED + "Usage: python script.py <directory> [--files]" + Style.RESET_ALL)
+            Fore.RED + "Usage: python find_video_length.py <directory> [--files]" + Style.RESET_ALL)
         sys.exit(1)
 
     directory_path = sys.argv[1]
@@ -164,3 +164,8 @@ if __name__ == '__main__':
     print(Fore.GREEN + "Total runtime of all videos:" + Style.RESET_ALL,
           f"{total_seconds:.2f} seconds OR" + Fore.BLUE +
           f"  {remaining_days} days, {remaining_hours} hours, {remaining_minutes} minutes.")
+
+
+if __name__ == '__main__':
+    main()
+    

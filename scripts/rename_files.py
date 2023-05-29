@@ -10,7 +10,7 @@ Author: LogicalLokesh
 
 import argparse
 import os
-from colorama import Fore, Style
+from colorama import Fore, Style, init
 
 
 def rename_files(target_dir, filename=None, extension=None, start_name=None, new_name=None):
@@ -71,6 +71,10 @@ def rename_files(target_dir, filename=None, extension=None, start_name=None, new
 
 
 def main():
+    
+    # Initialize Colorama
+    init()
+
     # Create the argument parser
     parser = argparse.ArgumentParser(
         description='Rename files based on criteria')
